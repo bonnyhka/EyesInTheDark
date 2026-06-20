@@ -1,64 +1,72 @@
 # Eyes in the Dark
 
-Horror-mod for Minecraft 1.21.1 on NeoForge. It adds no hostile mob or entity: the encounter is a client-side apparition made of glowing eyes and a broken smile. It cannot be killed, has no hitbox, does not deal damage, and never comes close enough to touch the player.
+> Атмосферный хоррор-мод для Minecraft `1.21.1` на NeoForge. В тёмных пещерах за игроком могут появиться светящиеся глаза и сломанная улыбка. Это не моб: у него нет хитбокса, его нельзя убить, он не наносит урон и никогда не подходит вплотную.
 
-## What it does
+## Что происходит в игре
 
-- Automatically appears for survival players in dark underground caves.
-- Spawns 8-14 blocks away, usually behind the player.
-- Watches from peripheral vision, then vanishes, flees, blinks between the edges of the screen, or starts a forced stare sequence.
-- Keeps the apparition at least 7.5 blocks away during the stare sequence. When a player gets within 6 blocks, it retreats or disappears.
-- Uses synchronized custom OGG sounds for appearing, waiting, staring, running away, and vanishing.
-- Adds a VHS effect, vignette, screen tearing, brief camera tremor, and afterimages at the strongest moment of the stare sound.
-- Contains an operator-controlled `blink` scare mode that jumps through a player's peripheral vision before fleeing.
+- В тёмных подземельях призрак появляется сам, обычно за спиной игрока.
+- Пока на него смотрят только боковым зрением, он неподвижно наблюдает.
+- При прямом взгляде он может исчезнуть, убежать, мигнуть по краю экрана или запустить девятисекундную сцену взгляда.
+- Во время сцены взгляда камера плавно возвращается к глазам, на экране появляются виньетка, VHS-помехи, разрывы кадра и краткая дрожь на кульминации звука.
+- Приближение безопасно: призрак держится не ближе `7.5` блоков, а если игрок подходит к нему на `6` блоков, тот сразу скрывается или убегает.
+- В мод уже добавлены шесть синхронизированных звуков: появление, два звука ожидания, приближение, побег и исчезновение.
 
-Natural appearances are enabled by default. The server checks every 2400 ticks (two minutes) for a survival player below Y=48, without access to the sky, at raw light level 5 or lower. Each valid check has a 20% chance to start an encounter.
+## Автоматическое появление
 
-## Requirements
+По умолчанию мод проверяет игроков раз в `2400` тиков, то есть каждые две минуты. Встреча может начаться, если игрок:
 
-- Minecraft `1.21.1`
-- NeoForge `21.1.233` or newer within the Minecraft 1.21.1 line
-- Install the mod JAR on both the dedicated server and every client that connects to it.
+- находится в режиме выживания;
+- ниже высоты `Y=48`;
+- не видит небо;
+- стоит в освещении не выше `5`;
+- прошёл проверку шанса `20%`.
 
-## Installation
+После встречи действует серверный кулдаун. Все значения можно изменить в `config/eyesinthedark-common.toml` или командами администратора.
 
-1. Put `eyesinthedark-1.0.0.jar` into the `mods` folder on the server and clients.
-2. Start the server once to create `config/eyesinthedark-common.toml`.
-3. Adjust automatic encounter settings in that configuration file when needed.
+## Установка
 
-## Operator Commands
+1. Установите NeoForge для Minecraft `1.21.1`.
+2. Поместите `eyesinthedark-1.0.0.jar` в папку `mods` сервера.
+3. Поместите тот же JAR в папку `mods` каждого клиента, который подключается к серверу.
+4. Запустите сервер один раз, чтобы появилась конфигурация `config/eyesinthedark-common.toml`.
 
-All commands require permission level 2.
+Поддерживается NeoForge `21.1.233` и более новые сборки ветки Minecraft `1.21.1`.
 
-| Command | Description |
+## Команды администратора
+
+Все команды требуют уровень прав `2`. Параметр `<игроки>` поддерживает селекторы Minecraft, например `@a`, `@p` или ник игрока.
+
+| Команда | Действие |
 | --- | --- |
-| `/eyesinthedark spawn [targets] [mode]` | Spawns the apparition behind one or more players. |
-| `/eyesinthedark force [targets]` | Starts the full stare sequence immediately. |
-| `/eyesinthedark blink [targets]` | Runs the peripheral blink scare and then flees. |
-| `/eyesinthedark clear [targets]` | Clears the active apparition effect. |
-| `/eyesinthedark chance [0.20..1.0]` | Shows or changes the automatic spawn chance. |
-| `/eyesinthedark enabled [true\|false]` | Shows or toggles automatic appearances. |
-| `/eyesinthedark interval [200..24000]` | Shows or changes the automatic check interval in ticks. |
-| `/eyesinthedark cooldown [200..72000]` | Shows or changes the cooldown after an encounter in ticks. |
-| `/eyesinthedark status` | Shows automatic-spawn settings and active encounter count. |
+| `/eyesinthedark spawn [игроки] [режим]` | Появляет призрака за выбранными игроками. |
+| `/eyesinthedark force [игроки]` | Сразу запускает сцену взгляда. |
+| `/eyesinthedark blink [игроки]` | Запускает резкое мигание по краям зрения, затем побег. |
+| `/eyesinthedark clear [игроки]` | Убирает активный эффект призрака. |
+| `/eyesinthedark chance [0.20..1.0]` | Показывает или меняет шанс автоматического появления. |
+| `/eyesinthedark enabled [true\|false]` | Показывает или включает/выключает автоматические появления. |
+| `/eyesinthedark interval [200..24000]` | Показывает или меняет интервал проверок в тиках. |
+| `/eyesinthedark cooldown [200..72000]` | Показывает или меняет кулдаун после встречи в тиках. |
+| `/eyesinthedark status` | Показывает активные настройки и число текущих встреч. |
 
-Available modes for `spawn`: `natural`, `idle`, `stare`, `flee`, `vanish`, and `blink`.
+Режимы для команды `spawn`: `natural`, `idle`, `stare`, `flee`, `vanish`, `blink`.
 
-## Sound Design
+## Звуки и эффекты
 
-The bundled sounds are OGG Vorbis resources and are timed to prevent overlap:
+Звуки встроены в JAR в формате OGG Vorbis. Их длительность учтена в логике, поэтому они не накладываются друг на друга:
 
-- `appear.ogg`: 3.74 seconds
-- `ambient_one.ogg`: 8.86 seconds
-- `ambient_two.ogg`: 6.16 seconds
-- `stare.ogg`: 9.27 seconds
-- `flee.ogg`: 6.50 seconds
-- `vanish.ogg`: 3.27 seconds
+| Файл | Длительность | Момент в сцене |
+| --- | ---: | --- |
+| `appear.ogg` | 3.74 с | Появление глаз. |
+| `ambient_one.ogg` | 8.86 с | Первое ожидание. |
+| `ambient_two.ogg` | 6.16 с | Второе ожидание перед исчезновением. |
+| `stare.ogg` | 9.27 с | Принудительный взгляд и VHS-эффект. |
+| `flee.ogg` | 6.50 с | Побег. |
+| `vanish.ogg` | 3.27 с | Плавное исчезновение. |
 
-## Building
+## Сборка из исходников
 
 ```powershell
 .\gradlew.bat build
 ```
 
-The assembled mod JAR is written to `build/libs/eyesinthedark-1.0.0.jar`.
+Готовый файл появится по пути `build/libs/eyesinthedark-1.0.0.jar`.
