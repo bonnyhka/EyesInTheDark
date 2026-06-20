@@ -1,0 +1,38 @@
+{
+  "appear": {
+    "subtitle": "sound.eyesinthedark.appear",
+    "sounds": [
+      "eyesinthedark:appear"
+    ]
+  },
+  "ambient_one": {
+    "subtitle": "sound.eyesinthedark.ambient_one",
+    "sounds": [
+      "eyesinthedark:ambient_one"
+    ]
+  },
+  "ambient_two": {
+    "subtitle": "sound.eyesinthedark.ambient_two",
+    "sounds": [
+      "eyesinthedark:ambient_two"
+    ]
+  },
+  "stare": {
+    "subtitle": "sound.eyesinthedark.stare",
+    "sounds": [
+      "eyesinthedark:stare"
+    ]
+  },
+  "vanish": {
+    "subtitle": "sound.eyesinthedark.vanish",
+    "sounds": [
+      "eyesinthedark:vanish"
+    ]
+  },
+  "flee": {
+    "subtitle": "sound.eyesinthedark.flee",
+    "sounds": [
+      "eyesinthedark:flee"
+    ]
+  }
+}

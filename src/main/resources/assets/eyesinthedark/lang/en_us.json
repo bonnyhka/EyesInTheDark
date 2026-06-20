@@ -1,0 +1,9 @@
+{
+  "modmenu.descriptionTranslation.eyesinthedark": "Glowing eyes in dark caves, server controlled test commands, VHS stare scares, and no hostile mob entity.",
+  "sound.eyesinthedark.appear": "Eyes in the Dark appears",
+  "sound.eyesinthedark.ambient_one": "Eyes in the Dark ambient whisper",
+  "sound.eyesinthedark.ambient_two": "Eyes in the Dark second whisper",
+  "sound.eyesinthedark.stare": "Eyes in the Dark stare",
+  "sound.eyesinthedark.vanish": "Eyes in the Dark vanish",
+  "sound.eyesinthedark.flee": "Eyes in the Dark fleeing footsteps"
+}
